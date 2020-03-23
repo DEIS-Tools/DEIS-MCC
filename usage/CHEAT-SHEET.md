@@ -12,7 +12,7 @@ will give you a single CPU and 1G of memory.
 Use `--exclusive` to 
 
 
-### Comon Options
+### Common Options
 
  - `--mem` allocated memory, supports type-modifiers (e.g. `--mem 15G` for 15 gigabyte)
  - `--exclusive` allocate a entire node, allocates all the memory and cpus
@@ -20,6 +20,23 @@ Use `--exclusive` to
  - `--time` limits the execution-time, use dd:hh:mm:ss format.
 
 See also [the sbatch documentation](https://slurm.schedmd.com/sbatch.html) or [the srun documentation](https://slurm.schedmd.com/srun.html)
+
+### Sbatch
+You can set constant values in the top of your scripts for `sbatch` by prepending them to your script as follows:
+
+```
+#!/bin/bash
+#SBATCH --time=1:05:00
+#SBATCH --mail-user=pgj@cs.aau.dk
+#SBATCH --mail-type=FAIL
+#SBATCH --partition=naples
+#SBATCH --mem=15000
+
+echo "hello world"
+
+```
+Assume that the previous script is called `helloworld.sh`, executing `sbatch helloworld.sh` will allocate 15G memory on the naples-partition and send `pgj` and email on fail. The job will be forcefully terminated after 1 hour and 5 minutes.
+
 
 ### See running jobs
 You can see running jobs with
