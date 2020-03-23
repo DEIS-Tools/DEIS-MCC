@@ -66,4 +66,31 @@ You can also cancel all of your jobs by
 scancel --user=$(whoami)
 ```
 
+### Measuring time of a process
+You can conviniently use `/usr/bin/time` to measure the performance of you binary.
+Just prepend the following command to your call
 
+```
+/usr/bin/time -f "@@@%e,%M@@@" echo "hello timing"
+```
+This will output the following.
+
+```
+hello timing
+@@@0.00,1960@@@
+```
+which is `@@@` followed by the timing in seconds and memory in kb.
+
+We can dump this result into a file
+
+```
+/usr/bin/time -f "@@@%e,%M@@@" echo "hello timing" &> filename
+```
+
+You can conviniently pick this up with grep as follows:
+
+```
+grep -oP "(?<=@@@).*(?=@@@)" filename
+```
+
+which will give you `0.00,1960`
