@@ -12,14 +12,14 @@ host aaugw
         ForwardAgent yes
 
 host deismcc
-        HostName deis-mcc-login2.srv.aau.dk
+        HostName deis-mcc-login1.srv.aau.dk
         User <aau-id>
         ForwardAgent yes
 
 host deismcc_proxy
-        HostName deis-mcc-login2.srv.aau.dk
+        HostName deis-mcc-login1.srv.aau.dk
         User <aau-id>
-        ProxyCommand ssh -W %h:%p aaugw
+        ProxyJump aaugw
         ForwardAgent yes
 ```
 
@@ -40,7 +40,7 @@ Otherwise you can use scp or any other tool to place the keys on the cluster in 
 
 If you manually copy the keys, make sure to run the following commands (while logged in to the cluster).
 ```
-chmod 600 -r ~/.ssh
+chmod 600 -R ~/.ssh
 ```
 
 ## Proxy
