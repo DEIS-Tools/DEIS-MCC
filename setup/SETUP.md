@@ -9,6 +9,7 @@ For linux-users, you can replace the `<aau-id>` in the followin text, and append
 ```
 host aaugw
         HostName sshgw.aau.dk
+        User <aau-id>
         ForwardAgent yes
 
 host deismcc
