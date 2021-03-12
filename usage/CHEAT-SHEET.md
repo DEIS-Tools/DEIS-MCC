@@ -39,10 +39,15 @@ Assume that the previous script is called `helloworld.sh`, executing `sbatch hel
 
 
 ### See running jobs
-You can see running jobs with
+You can see all running jobs with
 ``` bash
 squeue
 ```
+To see only your jobs
+``` 
+squeue -u $(whoami)
+``` 
+
 To investigate more details about the job, use
 ``` bash
 scontrol show jobid=$JOBID
@@ -58,7 +63,7 @@ Where `$JOBID` is the id given by, e.g. `squeue`
 
 If you want to cancel a range of jobs (say from jobid 100 to 900), you can conviniently do so by this one-liner
 ``` bash
-for i in $(seq 100 900 ) ; do scancel $i ; done
+scancel {100..900}
 ```
 
 You can also cancel all of your jobs by
