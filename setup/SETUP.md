@@ -1,10 +1,10 @@
 # Setup-Guide
 
 First you need to find your AAU-ID.
- + if your email-address was created PRIOR to August 2019, your AAU-ID is your email
- + otherwise you login with your AAU-ID (as normal)
+ + if your email-address was created PRIOR to August 2019, your AAU-ID is your email (e.g. johndoe17@student.aau.dk)
+ + otherwise you login with your AAU-ID (as normal) (e.g. janedoe20)
 
-For linux-users, you can replace the `<aau-id>` in the followin text, and append to your `~/.ssh/config`
+For linux-users, you can replace the `<aau-id>` in the following text, and append to your `~/.ssh/config`
 
 ```
 host aaugw
