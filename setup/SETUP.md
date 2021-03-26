@@ -3,9 +3,6 @@
 First you need to find your login-id:
   - If your account was created PRIOR to August 2019, its your email adresse (eg. pgj@cs.aau.dk), 
   - else you use your AAU-ID (eg. xy99xy@cs.aau.dk)
-
-+ You login with your username / domain (as you normally would log into the AAU systems) (e.g. 
-+ + if your email-address was created PRIOR to August 2019, your email/username: ab01cd@cs.aau.dk) 
  
 
 For linux-users, you can replace the `<aau-id>` in the following text, and append to your `~/.ssh/config`
