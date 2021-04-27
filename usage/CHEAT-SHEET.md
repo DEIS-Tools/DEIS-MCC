@@ -99,3 +99,10 @@ grep -oP "(?<=@@@).*(?=@@@)" filename
 ```
 
 which will give you `0.00,1960`
+
+### Cancel all jobs on hold by failed dependency 
+Cancel jobs in state DependencyNeverSatisfied 
+
+```
+squeue -u$(whoami) | grep DependencyNeverSatisfied |  squeue -u$(whoami) | grep Never | awk -F" " '{print $1}'  | xargs scancel
+```
