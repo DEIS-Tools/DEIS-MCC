@@ -39,3 +39,5 @@ end_step ; done # The next step (with the other tool) will not depend on this st
 # Run final script after all other jobs finish
 next run make-comparison.sh 
 ```
+
+If you use the `if_ok` condition, your jobs may get stuck in the state DependencyNeverSatisfied. Make sure to keep an eye out for this, and `scancel` such jobs. 
