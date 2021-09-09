@@ -68,6 +68,6 @@ done
 
 # Clean up after yourself, in case any temporary files were written.
 cd /scratch/${U}
-[ -d '${SLURM_JOBID}' ] && rm -r '${SLURM_JOBID}'
+[ -d "${SLURM_JOBID}" ] && rm -r ${SLURM_JOBID}
 
 exit ${EXIT_CODE}
