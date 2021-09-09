@@ -39,4 +39,4 @@ python -m pip install -r requirements.txt
 
 # Clean up after yourself
 cd /scratch/${U}
-[ -d '${SLURM_JOBID}' ] && rm -r '${SLURM_JOBID}'
+[ -d "${SLURM_JOBID}" ] && rm -r ${SLURM_JOBID}
