@@ -58,3 +58,10 @@ This server uses 2-factor authentication.
 Remember to setup your account at https://aka.ms/mfasetup first.
 Password: 
 ```
+
+Linux users setting up from outside the AAU-network, can conviniently copy the ssh-key using the following commands:
+```
+ssh-add
+ssh-copy-id aaugw
+ssh-copy-id deismcc_proxy
+```
