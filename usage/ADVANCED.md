@@ -2,15 +2,15 @@
 
 ## Local Storage
 
-There is locale storage on each node, mounted on `/scratch`.
-As you home-directory is mounted via NFS there are issues with latency in getting frequently-used data.
+There is local storage on each node, mounted on `/scratch`.
+As you home-directory is mounted via NFS there are issues with latency in getting frequently-used data. Some workflows which heavily use I/O from your home may crash your and others experiments, please report these issues to [falkeboc@cs.aau.dk](mailto:falkeboc@cs.aau.dk).
 You may therefore copy such data to `/scratch` to reduce this latency.
 
 However, please create a sub-folder with your username:
 ```
 mkdir -p /scratch/$(whoami)
 ```
-### Garuantees of /scratch
+### Guarantees of /scratch
 `scratch` is ~60GB large and shared among all users.
 Data is not garuanteed to be retained between jobs and data can be deleted at any time when the cluster is idle or rebooted.
 

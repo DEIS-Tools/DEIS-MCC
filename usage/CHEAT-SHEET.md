@@ -9,7 +9,6 @@ See also [the sbatch documentation](https://slurm.schedmd.com/sbatch.html) or [t
 srun --partition naples -n1 --mem 1G --pty bash
 ``` 
 will give you a single CPU and 1G of memory.
-Use `--exclusive` to 
 
 
 ### Common Options
@@ -31,11 +30,12 @@ You can set constant values in the top of your scripts for `sbatch` by prependin
 #SBATCH --mail-type=FAIL
 #SBATCH --partition=naples
 #SBATCH --mem=15000
+##SBATCH --mem=64G
 
 echo "hello world"
 
 ```
-Assume that the previous script is called `helloworld.sh`, executing `sbatch helloworld.sh` will allocate 15G memory on the naples-partition and send `pgj` and email on fail. The job will be forcefully terminated after 1 hour and 5 minutes.
+Assume that the previous script is called `helloworld.sh`, executing `sbatch helloworld.sh` will allocate 15G memory on the naples-partition and send `pgj` and email on fail. The job will be forcefully terminated after 1 hour and 5 minutes. Use double `#` to comment out a Sbatch-comment, when experimenting with Sbatch options.
 
 
 ### See running jobs
@@ -61,7 +61,7 @@ scancel $JOBID
 ```
 Where `$JOBID` is the id given by, e.g. `squeue`
 
-If you want to cancel a range of jobs (say from jobid 100 to 900), you can conviniently do so by this one-liner
+If you want to cancel a range of jobs (say from jobid 100 to 900), you can conveniently do so by this one-liner
 ``` bash
 scancel {100..900}
 ```
@@ -72,13 +72,13 @@ scancel --user=$(whoami)
 ```
 
 ### Measuring time of a process
-You can conviniently use `/usr/bin/time` to measure the performance of you binary.
+You can conveniently use `/usr/bin/time` to measure the performance of you binary.
 Just prepend the following command to your call
 
 ``` bash
 /usr/bin/time -f "@@@%e,%M@@@" echo "hello timing"
 ```
-This will output the following.
+This will output the following:
 
 ``` bash
 hello timing
@@ -92,7 +92,7 @@ We can dump this result into a file
 /usr/bin/time -f "@@@%e,%M@@@" echo "hello timing" &> filename
 ```
 
-You can conviniently pick this up with grep as follows:
+You can conveniently pick this up with grep as follows:
 
 ``` bash
 grep -oP "(?<=@@@).*(?=@@@)" filename
