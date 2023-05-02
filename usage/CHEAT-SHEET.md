@@ -13,8 +13,8 @@ will give you a single CPU and 1G of memory.
 
 ### Common Options
 
- - `--mem` allocated memory, supports type-modifiers (e.g. `--mem 15G` for 15 gigabyte)
- - `--exclusive` allocate a entire node, allocates all the memory and cpus
+ - `--mem` allocated memory, supports type-modifiers (e.g. `--mem 15G` for 15 gigabytes)
+ - `--exclusive` allocate an entire node, allocates all the memory and cpus
  - `--partition` use a specific partition (should be set to `naples` unless you know what you are doing)
  - `--time` limits the execution-time, use dd:hh:mm:ss format.
 
@@ -35,7 +35,7 @@ You can set constant values in the top of your scripts for `sbatch` by prependin
 echo "hello world"
 
 ```
-Assume that the previous script is called `helloworld.sh`, executing `sbatch helloworld.sh` will allocate 15G memory on the naples-partition and send `pgj` and email on fail. The job will be forcefully terminated after 1 hour and 5 minutes. Use double `#` to comment out a Sbatch-comment, when experimenting with Sbatch options.
+Assume that the previous script is called `helloworld.sh`, executing `sbatch helloworld.sh` will allocate 15G memory on the naples-partition and send `pgj` an email on fail. The job will be forcefully terminated after 1 hour and 5 minutes. Use double `#` to comment out a Sbatch-comment, when experimenting with Sbatch options.
 
 
 ### See running jobs
@@ -52,14 +52,14 @@ To investigate more details about the job, use
 ``` bash
 scontrol show jobid=$JOBID
 ```
-where `$JOBID` id one of the ID's given by squeue.
+where `$JOBID` is one of the ID's given by squeue.
 
 ### Cancel Job(s)
 You cancel a job by running
 ``` bash
 scancel $JOBID
 ```
-Where `$JOBID` is the id given by, e.g. `squeue`
+Where `$JOBID` is the id given by, e.g. `squeue`.
 
 If you want to cancel a range of jobs (say from jobid 100 to 900), you can conveniently do so by this one-liner
 ``` bash
@@ -72,7 +72,7 @@ scancel --user=$(whoami)
 ```
 
 ### Measuring time of a process
-You can conveniently use `/usr/bin/time` to measure the performance of you binary.
+You can conveniently use `/usr/bin/time` to measure the performance of your binary.
 Just prepend the following command to your call
 
 ``` bash
