@@ -33,7 +33,7 @@ You can also replace `deis-mcc-login2.srv.aau.dk` with its backup `deis-mcc-logi
 It is recomended that you copy your ssh-key to the cluster to avoid typing your password more than strictly needed.
 If you do not allready have ssh-keys generated, [convenient guides exist online](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
-Linux users can conviniently copy the key using the following commands on your local machine.
+Linux users can conveniently copy the key to the DEIS-MCC machine using the following commands on your local machine.
 ```
 ssh-add
 ssh-copy-id deismcc
