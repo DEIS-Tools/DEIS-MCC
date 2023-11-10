@@ -19,4 +19,4 @@ Note that `turing02` might be unstable due to this newer stack, report any issue
 | Node Name  | CUDA Driver  | CUDA Toolkit       |
 |------------|--------------|--------------------|
 | `turing01` | cuda-driver-450 | cuda-toolkit-11-0    |
-| `turing02` | cuda-driver-535 | cuda-toolkit-12.2 + cuda-toolkit-12.3 |
+| `turing02` | cuda-driver-535 | cuda-toolkit-12.2 |
