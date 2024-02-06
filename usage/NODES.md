@@ -3,7 +3,7 @@ These are the available nodes in the MCC cluster (updated 25/10/2023).
 To obtain this information, run `sinfo --long --Node --noheader | awk '!seen[$1]++'` on the cluster for the partition dimensions. For CPU and GPU look at `/proc/cpuinfo` or similar tools.
 Indices of partition indicate number of available nodes within a partition, e.g. rome partition has seven available nodes.
 
-| Node      	| Cores 	| Sockets:Cores:Threads 	| CPU 			| GPU 			| Memory GB 	| OS 				| Python |
+| Node      	| Cores 	| Threads:Cores:Sockets 	| CPU 			| GPU 			| Memory GB 	| OS 				| Python |
 | - 		| - 		| - 				| - 			| - 			| -		| - 				| - |
 | dhabi[1-9]   	|  64  		|  8:8:1 			| AMD Opteron 6376 	| N/A 			| 1000 		| Ubuntu 18.04.5 bionic 	| 2.7.18, 3.8.6, 3.9.2 |
 | naples[1-9]  	|  64  		|  8:8:1 			| AMD EPYC 7551 	| N/A 			| 500  		| Debian oldstable-updates sid 	| 2.7.18, 3.8.6, 3.9.2 |
