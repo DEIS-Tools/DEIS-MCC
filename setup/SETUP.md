@@ -29,6 +29,25 @@ host deismcc_proxy
 You should now be able to login to the cluster via the internal network by `ssh deismcc` using your AAU password.
 You can also replace `deis-mcc-login2.srv.aau.dk` with its backup `deis-mcc-login1.srv.aau.dk`.
 
+## Temporary setup for MCC3 migration period
+During the migration to MCC the summer of 2024, the following applies to ssh-setup:
+
+```
+host aaugw
+        # same as MCC2
+
+host mcc3
+        HostName deis-mcc3-fe01.srv.aau.dk
+        User <aau-id>
+        ForwardAgent yes
+
+host mcc3_proxy
+        HostName deis-mcc3-fe01.srv.aau.dk
+        User <aau-id>
+        ProxyJump aaugw
+        ForwardAgent yes
+```
+
 ## Copy of ssh-key
 It is recomended that you copy your ssh-key to the cluster to avoid typing your password more than strictly needed.
 If you do not allready have ssh-keys generated, [convenient guides exist online](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
