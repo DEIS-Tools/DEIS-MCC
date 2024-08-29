@@ -1,15 +1,23 @@
 # DEIS-MCC
 
-The documentation of DEIS-MCC, please report bugs directly on this repository too.
+This repo contains the documentation of DEIS-MCC (Model Checking Cluster). Please report bugs directly to this repository as GitHub issues.
 
-To get started, please refer to the [setup guide](setup/SETUP.md)
+If you would like access and do not already have, contact [Falke](mailto:falkeboc@cs.aau.dk).
 
-Prior to usage, please refer to the [house rules](setup/RULES.md) for using the cluster.
+## Getting started
+When you have received access, follow these steps to get acquainted with the cluster:
+1. Understand the rules: [House rules](setup/RULES.md)
 
-To see a list of common tasks, refer to the [cheat sheet](usage/CHEAT-SHEET.md)
+2. Configure SSH to connect to MCC: [Setup guide](setup/SETUP.md)
 
-To get information on our available nodes, refer to the [nodes table](usage/NODES.md)
+3. Run your first workload: [Simple usage](usage/SIMPLE.md)
 
-For more advanced usage, refer to the [advanced user guide](usage/ADVANCED.md)
-
-If you would like access and do not already have, contact [falke](mailto:falkeboc@cs.aau.dk)
+## Contents
+- [House rules](setup/RULES.md)
+- [Setup guide](setup/SETUP.md)
+- [Simple usage](usage/SIMPLE.md)
+- [Advanced use](usage/ADVANCED.md)
+- [Singularity virtualisation](virtualisation/SINGULARITY.md)
+    - [Container registry](virtualisation/REGISTRY.md) for premade and validated containers to use and expand
+- [Nodes table](usage/NODES.md) for information on our available nodes 
+- [Known issues](issues/KNOWN.md) for solutions to known issues
