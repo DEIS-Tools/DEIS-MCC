@@ -2,8 +2,10 @@
 Singularity (v4.1.4-jammy) is a container platform specifically designed for High-Performance Computing (HPC) environments. It enables users to run containers rootlessly.
 With a few caveats, you can use Singularity as you would Docker.
 
+Note that the fakeroot functionality is missing currently (05/09/24). Find workarounds below under Troubleshooting.
+
 ## Basic usage
-Say we have Rust workload that we would like to run and we do not have the required installed 
+
 
 
 
@@ -42,3 +44,16 @@ Default building dir is /tmp which may be too small. Use env-var to use another 
 ```
 SINGULARITY_TMPDIR=/scratch singularity build ...
 ```
+
+### Fakeroot functionality missing
+Some Singularity operations might require root-access, which MCC3 users will not be granted. Current workarounds:
+
+- Build the image on your own machine in a local Singularity environment and transfer it to the cluster using Sylabs library or SCP/Rsync
+- Use remote building service such as Sylabs. This service is free, quota is 500 minutes per month.
+
+#### Sylabs remote build-server
+1. Create an account at https://cloud.sylabs.io/ 
+1. Navigate to 'Access Tokens' and create one
+1. On the frontend node: `srun singularity remote login`
+1. When prompted, paste newly created token
+1. Add `--remote` flag to your build commands, e.g. `singularity build --remote demo.sif demo.def`
