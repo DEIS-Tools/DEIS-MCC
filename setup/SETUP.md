@@ -1,4 +1,4 @@
-# Setup-Guide
+# Setup-Guide for MCC3
 
 First you need to find your login-id:
   - If your account was created PRIOR to August 2019, its your email address (eg. pgj@cs.aau.dk/fvejlb17@student.aau.dk), 
@@ -14,28 +14,6 @@ host aaugw
         User <aau-id>
         ForwardAgent yes
 
-host deismcc
-        HostName deis-mcc-login1.srv.aau.dk
-        User <aau-id>
-        ForwardAgent yes
-
-host deismcc_proxy
-        HostName deis-mcc-login1.srv.aau.dk
-        User <aau-id>
-        ProxyJump aaugw
-        ForwardAgent yes
-```
-
-You should now be able to login to the cluster via the internal network by `ssh deismcc` using your AAU password.
-You can also replace `deis-mcc-login2.srv.aau.dk` with its backup `deis-mcc-login1.srv.aau.dk`.
-
-## Temporary setup for MCC3 migration period
-During the migration to MCC the summer of 2024, the following applies to ssh-setup:
-
-```
-host aaugw
-        # same as MCC2
-
 host mcc3
         HostName deis-mcc3-fe01.srv.aau.dk
         User <aau-id>
@@ -47,6 +25,10 @@ host mcc3_proxy
         ProxyJump aaugw
         ForwardAgent yes
 ```
+
+You should now be able to login to the cluster via the internal network by `ssh mcc3` using your AAU password. 
+Consider using `ssh-copy-id` described below to login without having to type your password every time.
+You can also replace `deis-mcc3-fe01.srv.aau.dk` with its backup `deis-mcc3-fe02.srv.aau.dk`.
 
 ### Error when cloning GitHub repo over SSH 
 If you get `ssh: connect to host github.com port 22: No route to host` when cloning over SSH, use the following addition to your ssh config located at `/nfs/home/cs.aau.dk/<aau-id>/.ssh/config`:
