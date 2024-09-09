@@ -5,8 +5,7 @@ With a few caveats, you can use Singularity as you would Docker.
 Note that the fakeroot functionality is missing currently (05/09/24). Find workarounds below under Troubleshooting.
 
 ## Basic usage
-
-
+Singularity is not installed on the login-nodes on purpose, so to interact with Singularity you can start an interactive shell on a compute node: `srun --pty bash`.
 
 
 ## Docker?
