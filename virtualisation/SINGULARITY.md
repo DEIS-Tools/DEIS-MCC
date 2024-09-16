@@ -1,5 +1,5 @@
 # Singularity
-Singularity (v4.1.4-jammy) is a container platform specifically designed for High-Performance Computing (HPC) environments. It enables users to run containers rootlessly.
+Singularity (v4.2.0-jammy) is a container platform specifically designed for High-Performance Computing (HPC) environments. It enables users to run containers rootlessly.
 With a few caveats, you can use Singularity as you would Docker.
 
 Note that the fakeroot functionality is missing currently (05/09/24). Find workarounds below under Troubleshooting.
