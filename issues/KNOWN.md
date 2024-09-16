@@ -27,8 +27,8 @@ Password / Token:
 INFO:    Token stored in /nfs/home/cs.aau.dk/<aau-id>/.singularity/remote.yaml
 ```
 
-# Display servers
-Currently (16/09/24) e.g. `emacs` gives a graphical interface if you are running an Xserver on your own machine.
+# X11 forwarding
+Currently (16/09/24) e.g. `emacs` gives a graphical interface if you are running an Xserver on your own machine and have enabled X11 forwarding.
 
 Other workloads such as interactive `matplotlib` windows does not seem to function on the standard Ubuntu installation. 
 
