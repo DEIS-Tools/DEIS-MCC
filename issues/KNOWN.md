@@ -26,3 +26,10 @@ singularity remote login --username username docker://docker.io`
 Password / Token:
 INFO:    Token stored in /nfs/home/cs.aau.dk/<aau-id>/.singularity/remote.yaml
 ```
+
+# Display servers
+Currently (16/09/24) e.g. `emacs` gives a graphical interface if you are running an Xserver on your own machine.
+
+Other workloads such as interactive `matplotlib` windows does not seem to function on the standard Ubuntu installation. 
+
+This is not a priority functionality. Offload the results to your own machine for further analysis.
