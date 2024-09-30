@@ -2,35 +2,96 @@
 Singularity (v4.2.0-jammy) is a container platform specifically designed for High-Performance Computing (HPC) environments. It enables users to run containers rootlessly.
 With a few caveats, you can use Singularity as you would Docker.
 
-Note that the fakeroot functionality is missing currently (05/09/24). Find workarounds below under Troubleshooting.
+__IMPORTANT CAVEAT__: Note that the fakeroot functionality is missing currently (05/09/24). Find workarounds below under Troubleshooting.
 
 ## Basic usage
-Singularity is not installed on the login-nodes on purpose, so to interact with Singularity you can start an interactive shell on a compute node: `srun --pty bash`.
-
-
-## Docker?
-Singularity can be used with Docker images.
+Singularity is not installed on the login-nodes to avoid blocking actions, so to interact with Singularity you can start an interactive shell on a compute node: `srun --pty bash`.
 
 ```sh
-singularity shell docker://ubuntu:latest # runs container and drops into interactive shell
+singularity shell library://ubuntu:latest # runs container and drops into interactive shell
 
-singularity run docker://ubuntu:latest # executes default run command
+singularity run library://ubuntu:latest # executes default run command
 
-singularity exec docker://ubuntu:latest echo "Hello MCC!" # runs container and executes command 'echo "hello MCC!"'
+singularity exec library://ubuntu:latest echo "Hello MCC!" # runs container and executes command 'echo "Hello MCC!"'
 
-singularity pull docker://ubuntu:latest # pulls latest version of container and converts into .sif image for local use
+singularity pull library://ubuntu:latest # pulls latest version of container and converts into .sif image for local use
 
-singularity build ubuntu.img docker://ubuntu:latest # creates Singularity image from latest docker container version
+singularity build ubuntu.img library://ubuntu:latest # creates Singularity image from latest library container version
 ```
 
-### Limitations
-- Docker networking options like `--network` and `--link`are not supported, due to disallowing priviledged access to host's network stack. 
+### Docker?
+Singularity supports Docker images, replace `library` with `docker` as the source of the image.
+
+#### Limitations
+- Docker networking options like `--network` and `--link` are not supported, due to disallowing priviledged access to host's network stack. 
 - No root in containers, just as in native Slurm.
 
 [Official Sylabs Docker docs](https://docs.sylabs.io/guides/2.6/user-guide/singularity_and_docker.html)
 
-## GPU resources
 
+## Definition files
+Similar in function to docker-compose files are Singularity's definition (`.def`) files.
+Use these to describe the setup and creation of Singularity images in a reproducible way.
+
+Below is an [official example](https://docs.sylabs.io/guides/latest/user-guide/definition_files.html) of a def-file that uses all available definition-sections. 
+```sh
+Bootstrap: library
+From: ubuntu:22.04
+Stage: build
+
+%setup
+    touch /file1
+    touch ${SINGULARITY_ROOTFS}/file2
+
+%files
+    /file1
+    /file1 /opt
+
+%environment
+    export LISTEN_PORT=54321
+    export LC_ALL=C
+
+%post
+    apt-get update && apt-get install -y netcat
+    NOW=`date`
+    echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
+
+%runscript
+    echo "Container was created $NOW"
+    echo "Arguments received: $*"
+    exec echo "$@"
+
+%startscript
+    nc -lp $LISTEN_PORT
+
+%test
+    grep -q NAME=\"Ubuntu\" /etc/os-release
+    if [ $? -eq 0 ]; then
+        echo "Container base is Ubuntu as expected."
+    else
+        echo "Container base is not Ubuntu."
+        exit 1
+    fi
+
+%labels
+    Author myuser@example.com
+    Version v0.0.1
+
+%help
+    This is a demo container used to illustrate a def file that uses all
+    supported sections.
+```
+
+On a cluster with fakeroot functionality, build an image from a definition file with this command: `singularity build --fakeroot example.sif example.def`. 
+
+## GPU resources
+Use the flag `--nv` (nvidia) for running CUDA applications to have Singularity setup the container environment for GPU enabled applications.
+
+Common images are kept locally in `/nfs/container`.
+
+### TensorFlow interactive example
+From the login node, we ask SLURM to run Singularity command with 1 GPU allocated and NVIDIA support.
+`srun --gres=gpu:1 singularity exec --nv /ceph/container/tensorflow_24.03-tf2-py3.sif python3 -c ""`
 
 ## Troubleshooting
 ### Building an image: No space left on device 
