@@ -53,7 +53,7 @@ If you do not allready have ssh-keys generated, [convenient guides exist online]
 Linux users can conveniently copy the key to the DEIS-MCC machine using the following commands on your local machine.
 ```
 ssh-add
-ssh-copy-id deismcc
+ssh-copy-id mcc3
 ```
 
 Otherwise you can use scp or any other tool to place the keys on the cluster in `~/.ssh/`
@@ -64,12 +64,12 @@ chmod 600 -R ~/.ssh
 ```
 
 ## Proxy
-If you are outside the AAU-network, you can either use VPN to gain access to the AAU-network OR you can do `ssh deismcc_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `deismcc_proxy` host-config in the above example.
+If you are outside the AAU-network, you can either use VPN to gain access to the AAU-network OR you can do `ssh mcc3_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `mcc3_proxy` host-config in the above example.
 If you use the ssh-gateway, you need [2-factor authentication](https://www.en.its.aau.dk/instructions/Username+and+password/2-factor-authentication/), which you should already have setup to use other AAU-resources.
 
 You will be met by the following prompt:
 ```
-$ ssh deismcc_proxy
+$ ssh mcc3_proxy
 Hello, this is the SSH gateway.
 This server uses 2-factor authentication.
 Remember to setup your account at https://aka.ms/mfasetup first.
@@ -82,5 +82,5 @@ Linux users setting up from outside the AAU-network, can conveniently copy the s
 ```
 ssh-add
 ssh-copy-id aaugw
-ssh-copy-id deismcc_proxy
+ssh-copy-id mcc3_proxy
 ```
