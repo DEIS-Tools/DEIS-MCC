@@ -66,7 +66,8 @@ chmod 600 -R ~/.ssh
 ```
 
 ## Proxy
-If you are outside the AAU-network, you can either use VPN to gain access to the AAU-network OR you can do `ssh deismcc_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `deismcc_proxy` host-config in the above example.
+If you are outside the AAU-network, your primary way of access to the to the AAU-network is the AAU-VPN. 
+However, you may without guarrantees use the AAU-SSH-Gateway. Do `ssh deismcc_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `deismcc_proxy` host-config in the above example.
 If you use the ssh-gateway, you need [2-factor authentication](https://www.en.its.aau.dk/instructions/Username+and+password/2-factor-authentication/), which you should already have setup to use other AAU-resources.
 
 You will be met by the following prompt:
@@ -77,8 +78,6 @@ This server uses 2-factor authentication.
 Remember to setup your account at https://aka.ms/mfasetup first.
 Password: 
 ```
-FIXME: on AAU network, logging into student-account through proxy does not trigger 2FA, just twice use of password?
-
 
 Linux users setting up from outside the AAU-network, can conveniently copy the ssh-key using the following commands:
 ```

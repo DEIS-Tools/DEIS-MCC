@@ -17,6 +17,7 @@ When you have received access, follow these steps to get acquainted with the clu
 - [Setup guide](setup/SETUP.md)
 - [Simple usage](usage/SIMPLE.md)
 - [Advanced use](usage/ADVANCED.md)
+- [Cheatsheet](usage/CHEAT-SHEET.md)
 - [Singularity virtualisation](virtualisation/SINGULARITY.md)
     - [Container registry](virtualisation/REGISTRY.md) for premade and validated containers to use and expand
 - [Nodes table](usage/NODES.md) for information on our available nodes 
