@@ -1,4 +1,4 @@
-# Setup-Guide
+# Setup-Guide for MCC3
 
 First you need to find your login-id:
   - If your account was created PRIOR to August 2019, its your email address (eg. pgj@cs.aau.dk/fvejlb17@student.aau.dk), 
@@ -14,28 +14,6 @@ host aaugw
         User <aau-id>
         ForwardAgent yes
 
-host deismcc
-        HostName deis-mcc-login1.srv.aau.dk
-        User <aau-id>
-        ForwardAgent yes
-
-host deismcc_proxy
-        HostName deis-mcc-login1.srv.aau.dk
-        User <aau-id>
-        ProxyJump aaugw
-        ForwardAgent yes
-```
-
-You should now be able to login to the cluster via the internal network by `ssh deismcc` using your AAU password.
-You can also replace `deis-mcc-login2.srv.aau.dk` with its backup `deis-mcc-login1.srv.aau.dk`.
-
-## Temporary setup for MCC3 migration period
-During the migration to MCC the summer of 2024, the following applies to ssh-setup:
-
-```
-host aaugw
-        # same as MCC2
-
 host mcc3
         HostName deis-mcc3-fe01.srv.aau.dk
         User <aau-id>
@@ -48,6 +26,10 @@ host mcc3_proxy
         ForwardAgent yes
 ```
 
+You should now be able to login to the cluster via the internal network by `ssh mcc3` using your AAU password. 
+Consider using `ssh-copy-id` described below to login without having to type your password every time.
+You can also replace `deis-mcc3-fe01.srv.aau.dk` with its backup `deis-mcc3-fe02.srv.aau.dk`.
+
 ## Copy of ssh-key
 It is recomended that you copy your ssh-key to the cluster to avoid typing your password more than strictly needed.
 If you do not allready have ssh-keys generated, [convenient guides exist online](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
@@ -55,7 +37,7 @@ If you do not allready have ssh-keys generated, [convenient guides exist online]
 Linux users can conveniently copy the key to the DEIS-MCC machine using the following commands on your local machine.
 ```
 ssh-add
-ssh-copy-id deismcc
+ssh-copy-id mcc3
 ```
 
 Otherwise you can use scp or any other tool to place the keys on the cluster in `~/.ssh/`
@@ -67,12 +49,12 @@ chmod 600 -R ~/.ssh
 
 ## Proxy
 If you are outside the AAU-network, your primary way of access to the to the AAU-network is the AAU-VPN. 
-However, you may without guarrantees use the AAU-SSH-Gateway. Do `ssh deismcc_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `deismcc_proxy` host-config in the above example.
+However, you may without guarrantees use the AAU-SSH-Gateway. Do `ssh mcc3_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `deismcc_proxy` host-config in the above example.
 If you use the ssh-gateway, you need [2-factor authentication](https://www.en.its.aau.dk/instructions/Username+and+password/2-factor-authentication/), which you should already have setup to use other AAU-resources.
 
 You will be met by the following prompt:
 ```
-$ ssh deismcc_proxy
+$ ssh mcc3_proxy
 Hello, this is the SSH gateway.
 This server uses 2-factor authentication.
 Remember to setup your account at https://aka.ms/mfasetup first.
@@ -83,5 +65,5 @@ Linux users setting up from outside the AAU-network, can conveniently copy the s
 ```
 ssh-add
 ssh-copy-id aaugw
-ssh-copy-id deismcc_proxy
+ssh-copy-id mcc3_proxy
 ```
