@@ -30,22 +30,6 @@ You should now be able to login to the cluster via the internal network by `ssh 
 Consider using `ssh-copy-id` described below to login without having to type your password every time.
 You can also replace `deis-mcc3-fe01.srv.aau.dk` with its backup `deis-mcc3-fe02.srv.aau.dk`.
 
-### Error when cloning GitHub repo over SSH 
-If you get `ssh: connect to host github.com port 22: No route to host` when cloning over SSH, use the following addition to your ssh config located at `/nfs/home/cs.aau.dk/<aau-id>/.ssh/config`:
-
-```
-host github.com
-    HostName ssh.github.com
-    Port 443
-```
-
-If you also get `Bad owner or permissions on <path-to-config>`, then remember to set correct permissions. A suggestion follows based on [ssh man_page](http://linuxcommand.org/lc3_man_pages/ssh1.html), but be careful that you are not exposing any private keys:
-```sh
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/config
-```
-
-
 ## Copy of ssh-key
 It is recomended that you copy your ssh-key to the cluster to avoid typing your password more than strictly needed.
 If you do not allready have ssh-keys generated, [convenient guides exist online](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
@@ -64,7 +48,8 @@ chmod 600 -R ~/.ssh
 ```
 
 ## Proxy
-If you are outside the AAU-network, you can either use VPN to gain access to the AAU-network OR you can do `ssh mcc3_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `mcc3_proxy` host-config in the above example.
+If you are outside the AAU-network, your primary way of access to the to the AAU-network is the AAU-VPN. 
+However, you may without guarrantees use the AAU-SSH-Gateway. Do `ssh mcc3_proxy` to go through the `sshgw.aau.dk` tunnel. Remember to use the `deismcc_proxy` host-config in the above example.
 If you use the ssh-gateway, you need [2-factor authentication](https://www.en.its.aau.dk/instructions/Username+and+password/2-factor-authentication/), which you should already have setup to use other AAU-resources.
 
 You will be met by the following prompt:
@@ -75,8 +60,6 @@ This server uses 2-factor authentication.
 Remember to setup your account at https://aka.ms/mfasetup first.
 Password: 
 ```
-FIXME: on AAU network, logging into student-account through proxy does not trigger 2FA, just twice use of password?
-
 
 Linux users setting up from outside the AAU-network, can conveniently copy the ssh-key using the following commands:
 ```
