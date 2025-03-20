@@ -2,7 +2,7 @@
 
 This repo contains the documentation of DEIS-MCC (Model Checking Cluster). Please report bugs directly to this repository as GitHub issues.
 
-If you would like access and do not already have, contact [Falke](mailto:falkeboc@cs.aau.dk).
+If you would like access and do not already have, contact [Morten](mailto:mksc@cs.aau.dk).
 
 ## Getting started
 When you have received access, follow these steps to get acquainted with the cluster:
