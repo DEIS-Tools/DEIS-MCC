@@ -17,7 +17,7 @@ _Note: Genoa partition is expected to be available at end of Q1 2025._
 
 ## GPU compute
 The two nodes of the `turing` partition has different driver- and software-stacks as depicted below, this is to accomodate projects which require newer features. 
-Note that `turing02` might be unstable due to this newer stack, report any issues and requests to [falke](mailto:falkeboc@cs.aau.dk).
+Note that `turing02` might be unstable due to this newer stack, report any issues and requests to [Morten](mailto:mksc@cs.aau.dk).
 
 | Node Name  | CUDA Driver  | CUDA Toolkit       |
 |------------|--------------|--------------------|

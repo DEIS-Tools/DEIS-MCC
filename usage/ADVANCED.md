@@ -3,7 +3,7 @@
 ## Local Storage
 
 There is local storage on each node, mounted on `/scratch`.
-As you home-directory is mounted via NFS there are issues with latency in getting frequently-used data. Some workflows which heavily use I/O from your home may crash your and others experiments, please report these issues to [falkeboc@cs.aau.dk](mailto:falkeboc@cs.aau.dk).
+As you home-directory is mounted via NFS there are issues with latency in getting frequently-used data. Some workflows which heavily use I/O from your home may crash your and others experiments, please report these issues to [Morten](mailto:mksc@cs.aau.dk).
 You may therefore copy such data to `/scratch` to reduce this latency.
 
 However, please create a sub-folder with your username:
