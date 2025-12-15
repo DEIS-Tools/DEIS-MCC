@@ -5,7 +5,7 @@ Indices of partition indicate number of available nodes within a partition, e.g.
 
 | Node      	| Cores 	| Sockets:Cores:Threads 	| CPU 			        | GPU 			        | Memory GB  | High speed storage       | OS 				    | Python |
 | - 		| - 		| - 				| - 			| - 			    | -		| - 				| - | - |
-| dhabi[1-9]   	|  64  		|  8:8:1 			        | AMD Opteron 6376 	    | N/A 			        | 1000 	    | Networked scratch         | Ubuntu 22.04.4 LTS    | 2.7.18, 3.10.12 |
+| dhabi[1-8]   	|  64  		|  8:8:1 			        | AMD Opteron 6376 	    | N/A 			        | 1000 	    | Networked scratch         | Ubuntu 22.04.4 LTS    | 2.7.18, 3.10.12 |
 | naples[1-9]  	|  64  		|  8:8:1 			        | AMD EPYC 7551 	    | N/A 			        | 512  	    | Networked scratch         | Ubuntu 22.04.4 LTS    | 3.10.12 |
 | rome[1-7]    	|  96  		|  2:48:1   	        | AMD EPYC 7642 	    | N/A 			        | 1024 	   	| Networked scratch         | Ubuntu 22.04.4 LTS    | 3.10.12 | 
 | genoa[1-5]    |  64     |  2:32:1             | AMD EPYC 9334         | N/A                   | 1536      | 960GB NVMe PCIe4 x4       | Ubuntu 22.04.4 LTS    | 3.10.12 | 
