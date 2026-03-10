@@ -3,29 +3,35 @@
 #SBATCH --mail-user=<YOUR-EMAIL>
 #SBATCH --output=/nfs/home/cs.aau.dk/<YOUR-ACCOUNT-NAME>/slurm-output/test-runner-%A_%a.out  # Redirect the output stream to this file (%A_%a is the job's array-id and index)
 #SBATCH --error=/nfs/home/cs.aau.dk/<YOUR-ACCOUNT-NAME>/slurm-output/test-runner-%A_%a.err   # Redirect the error stream to this file (%A_%a is the job's array-id and index)
-#SBATCH --partition=naples,dhabi,rome  # If you need run-times to be consistent across tests, you may need to restrict to one partition.
+#SBATCH --partition=naples,rome,genoa  # If you need run-times to be consistent across tests, you may need to restrict to one partition.
 #SBATCH --mem=1G  # Memory limit that slurm allocates
 
 ###
 ## This script is designed to be executed as several parallel runners. 
 ## For example to start 20 runners use:
 ## sbatch --array=1-20 ./test-runner.sh <arguments> <to> <the> <script>
-## If you have a large number of fast-running test instances, running e.g. 10000 jobs that each just runs a single test instance, may overload the scheduler.
-## This template lets you use only a few 'runner' jobs that goes through all available instances.
+## If you have a large number of fast-running test instances, running e.g. 10000 jobs that each just run a single test instance, may overload the scheduler.
+## This template lets you use only a few 'runner' jobs that go through all available instances.
 ###
 
 # Memory limit for user program
-let "m=1024*1024*1"
+let "m=1024*${SLURM_MEM_PER_NODE}"
 ulimit -v $m
 
 U=$(whoami)
 PD=$(pwd)
 # Create a unique folder for this job execution in your scratch folder. (In case your program writes temporary files.)
-SCRATCH_DIRECTORY=/scratch/${U}/${SLURM_JOBID}  
-mkdir -p ${SCRATCH_DIRECTORY}
-cd ${SCRATCH_DIRECTORY}
+SCRATCH_DIR="/scratch/${U}"
+JOB_DIR="${SCRATCH_DIR}/${SLURM_JOB_ID}"
+# Clean up after yourself, in case any temporary files were written, even if the job is killed prematurely.
+cleanup () {
+    rm -rf ${JOB_DIR} 2>/dev/null >/dev/null
+}
+trap cleanup EXIT KILL
+mkdir -p ${JOB_DIR}
+cd ${JOB_DIR}
 
-# With noclobber set, 'echo "" > myfile' will not overwrite myfile if it exists. We use this to aquire locks on specific test instances.
+# With noclobber set, 'echo "" > myfile' will not overwrite myfile if it exists. We use this to acquire locks on specific test instances.
 set -o noclobber
 
 # TODO: Get the arguments you need. 
@@ -38,7 +44,7 @@ mkdir -p ${RESULT_FOLDER}
 EXIT_CODE=0
 
 ###
-## If your program uses large or latency critical files, consider copying them here (/scratch is node-local, whereas your home-directory is networked).
+## If your program uses large or latency-critical files, consider copying them here (/scratch is node-local, whereas your home directory is networked).
 ## cp ${PD}/your-large-dependency .
 ###
 
@@ -48,7 +54,7 @@ for INSTANCE in $(ls "${INSTANCE_FOLDER}") ; do
     # TODO: Adapt this to your file structure
     RESULT_FILE="${RESULT_FOLDER}/$INSTANCE"
 
-    # Aquire lock on this test execution here.
+    # Acquire lock on this test execution here.
     echo "" > "${RESULT_FILE}"
     if [ "$?" -eq "0" ]; then
         # TODO: Your test execution command. Adapt this to your needs and parameters.
@@ -65,9 +71,5 @@ for INSTANCE in $(ls "${INSTANCE_FOLDER}") ; do
         fi
     fi
 done
-
-# Clean up after yourself, in case any temporary files were written.
-cd /scratch/${U}
-[ -d "${SLURM_JOBID}" ] && rm -r ${SLURM_JOBID}
 
 exit ${EXIT_CODE}
