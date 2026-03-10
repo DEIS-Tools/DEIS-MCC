@@ -6,7 +6,7 @@
 #SBATCH --time=1:00:00  # (Optional) time limit in dd:hh:mm:ss format. Make sure to keep an eye on your jobs (using 'squeue -u $(whoami)') anyways.
 #SBATCH --mem=1G  # Memory limit that slurm allocates
 
-# Memory limit for user program. Must be equal to SBATCH-directive allocation.
+# Memory limit for user program. Equals the SBATCH-directive allocation.
 #  (allows graceful handling of out-of-memory errors in your program.)
 let "m=1024*$SLURM_MEM_PER_NODE"
 ulimit -v $m
@@ -17,4 +17,5 @@ echo "Job-name: $SLURM_JOB_NAME; jobid: $SLURM_JOB_ID; Partition: $SLURM_JOB_PAR
 #######################
 # Your code goes below #
 #######################
+
 
