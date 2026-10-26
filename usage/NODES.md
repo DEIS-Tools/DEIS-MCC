@@ -17,7 +17,7 @@ Indices of partition indicate number of available nodes within a partition, e.g.
 
 ## GPU compute
 
-| Node Name       | Driver Version | CUDA Version | VRAM  |
-|-----------------|----------------|--------------|-------|
-| `turing[01-02]` | 595.45.04      | 13.2         | 16 GB |
-| `ada[01-02]`    | 595.45.04      | 13.2         | 24 GB |
+| Node Name       | Driver Version | CUDA Version | GPU          | VRAM  |
+|-----------------|----------------|--------------|--------------|-------|
+| `turing[01-02]` | 595.45.04      | 13.2         | 6x Tesla  T4 | 16 GB |
+| `ada[01-02]`    | 595.45.04      | 13.2         | 2x NVIDIA L4 | 24 GB |
